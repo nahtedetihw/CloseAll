@@ -1,0 +1,9 @@
+Package: com.nahtedetihw.closeall
+Name: CloseAll
+Version: 1.0
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: Ethan Whited
+Author: Ethan Whited
+Section: Tweaks
+Depends: 
