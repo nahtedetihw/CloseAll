@@ -1,5 +1,7 @@
 ![download](https://i.ibb.co/VDDzgbn/Close-All-Banner.png)
 
+https://github.com/nahtedetihw/CloseAll/raw/main/RPReplay_Final1685078738-2.mov
+
 # CloseAll
 ### Close All apps in the App Switcher on iOS 15 - 16
 * No options to configure, no dependencies.
