@@ -1,3 +1,5 @@
+![download](https://i.ibb.co/VDDzgbn/Close-All-Banner.png)
+
 # CloseAll
 ### Close All apps in the App Switcher on iOS 15 - 16
 * No options to configure, no dependencies.
