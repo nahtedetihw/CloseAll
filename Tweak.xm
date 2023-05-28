@@ -2,6 +2,7 @@
 
 #define plistPath ([[NSFileManager defaultManager] fileExistsAtPath:@"/var/mobile/Library/Preferences/com.nahtedetihw.closeallapps.plist"] ? @"/var/mobile/Library/Preferences/com.nahtedetihw.closeallapps.plist" : @"/var/jb/var/mobile/Library/Preferences/com.nahtedetihw.closeallapps.plist")
 
+// Add close button to switcher
 %hook SBAppSwitcherScrollView
 %property (nonatomic, strong) UIButton *closeAllButton;
 %property (nonatomic, strong) _UIBackdropViewSettings *blurViewSettings;
@@ -43,6 +44,7 @@
     }
 }
 
+// Make sure the button is only visible when the switcher is visible
 -(void)setScrollEnabled:(BOOL)arg1 {
     %orig;
     if (arg1 == false) {
@@ -58,6 +60,7 @@
     }
 }
 
+// Add a blur behind the close button
 %new
 - (void)addBlurToButton {
     if (self.superview && self.closeAllButton) {
@@ -75,6 +78,7 @@
     }
 }
 
+// Close all apps
 %new
 - (void)closeAll {
     [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0.2 options:nil animations:^{
@@ -127,6 +131,7 @@
     }
 }
 
+// If remaining apps are empty, animate close button to notify user
 %new
 - (void)emptyArrayCloseAttempt {
     AudioServicesPlaySystemSound(1521);
@@ -153,6 +158,7 @@
 @interface SBSwitcherAppSuggestionViewController : UIViewController
 @end
 
+// Remove suggestions in App Switcher
 %hook SBSwitcherAppSuggestionViewController
 - (void)viewWillAppear:(BOOL)arg1 {
     %orig;
@@ -164,8 +170,6 @@
     self.view.hidden = YES;
 }
 %end
-
-BOOL lockRemoved;
 
 @interface SBReusableSnapshotItemContainer : UIView
 @property (nonatomic, retain) UIView *lockImageContainerView;
@@ -179,6 +183,8 @@ BOOL lockRemoved;
 - (void)updateLock;
 @end
 
+
+// Add lock icon to card
 %hook SBReusableSnapshotItemContainer
 %property (nonatomic, retain) UIView *lockImageContainerView;
 %property (nonatomic, retain) UIImageView *lockImageView;
@@ -241,6 +247,7 @@ BOOL lockRemoved;
     [self updateLock];
 }
 
+// Update the lock to show/hide when an app is locked/unlocked
 %new
 - (void)updateLock {
     NSMutableDictionary *myMutableDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
@@ -263,6 +270,7 @@ BOOL lockRemoved;
     }
 }
 
+// Swipe down to lock/unlock
 - (void)_updateTransformForCurrentHighlight {
     %orig;
     if (self.killingProgress <= -0.2) {
@@ -331,6 +339,7 @@ BOOL lockRemoved;
 }
 %end
 
+// Prevent lock from showing when transitioning to icon with floating dock
 %hook SBMainSwitcherViewController
 -(void)layoutStateTransitionCoordinator:(id)arg1 transitionDidBeginWithTransitionContext:(id)arg2 {
     %orig;
@@ -355,6 +364,7 @@ BOOL lockRemoved;
 }
 %end
 
+// Notify when now playing app changes
 %hook SBMediaController
 -(void)_setNowPlayingApplication:(id)arg1 {
     %orig;
@@ -362,6 +372,8 @@ BOOL lockRemoved;
 }
 %end
 
+
+// Set scale of card smaller and move icon/title over to fit the lock
 %hook SBAppSwitcherSettings
 - (double)deckSwitcherPageScale {
     double origValue = %orig;
