@@ -1,5 +1,6 @@
 #import "Tweak.h"
 
+// thanks Dave for QuitAll - https://github.com/vanwijkdave/QuitAll/blob/master/Tweak/quitm.x
 @implementation CloseAllManager
 -(void)clearApp:(SBAppLayout *)item switcher:(SBMainSwitcherControllerCoordinator *)switcher excludeList:(NSArray *)excluded {
     NSString *bundleID;
