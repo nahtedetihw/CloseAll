@@ -32,7 +32,7 @@
         self.closeAllButton.translatesAutoresizingMaskIntoConstraints = false;
         [self.closeAllButton.widthAnchor constraintEqualToConstant:55].active = true;
         [self.closeAllButton.heightAnchor constraintEqualToConstant:25].active = true;
-        [self.closeAllButton.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor constant:-13].active = true;
+        [self.closeAllButton.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor constant:-330].active = true;
         [self.closeAllButton.topAnchor constraintEqualToAnchor:self.superview.topAnchor constant:10].active = true;
         
         self.closeAllButton.alpha = 0;
@@ -73,7 +73,7 @@
         self.blurView.translatesAutoresizingMaskIntoConstraints = false;
         [self.blurView.widthAnchor constraintEqualToConstant:55].active = true;
         [self.blurView.heightAnchor constraintEqualToConstant:25].active = true;
-        [self.blurView.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor constant:-13].active = true;
+        [self.blurView.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor constant:-330].active = true;
         [self.blurView.topAnchor constraintEqualToAnchor:self.superview.topAnchor constant:10].active = true;
     }
 }
